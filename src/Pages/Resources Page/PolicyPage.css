@@ -1,0 +1,15 @@
+.resouce-main {
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    gap:30px;
+}
+
+
+.resouce-div {
+    padding:40px 30px ;
+    width:70%;
+    background-color:rgb(244, 240, 240);
+}
+
+

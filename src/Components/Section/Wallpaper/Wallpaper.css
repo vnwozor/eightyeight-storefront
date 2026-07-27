@@ -1,0 +1,30 @@
+.wallpaper-main {
+    position: relative;
+}
+
+
+.wallpaper {
+    display:flex;
+    position:relative;
+    top:-100px;
+    width:100%;
+    z-index:-100;
+}
+
+
+/* 
+
+.wall-img {
+    position: absolute;
+    z-index:5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.wall-img img {
+    height:50px;
+} */

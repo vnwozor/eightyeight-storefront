@@ -1,0 +1,162 @@
+div {
+    font-size:14px;
+}
+
+.main-div {
+    display:flex;
+}
+
+.open-menu {
+    display:flex;
+    padding:80px 0px;
+    flex-direction: column;
+    gap:20px;
+    width:330px;
+    height:100vh;
+    background-color:white;
+    position: fixed;
+    top:0;
+    left:0;
+    transform:translateX(-100%);
+    transition:transform 0.3s ease;
+}
+
+.open-menu.menu-open {
+    transform:translateX(0);
+}
+
+
+.close-btn {
+    position: absolute;
+    padding:8px;
+    top:30px;
+    right:14px;
+    background-color:transparent;
+    transition: border ease-in-out;
+    height:13px;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+.open-menu-div {
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.menu {
+    display:flex;
+    justify-content:space-between;
+    margin-left:20px;
+    color:black;
+    border-radius:20px;
+}
+
+
+
+.menu:hover {
+    color:black;
+    cursor: pointer;
+}
+
+
+.sub-menu {
+    margin-right:25px;
+    transition:transform 0.9s ease;
+}
+
+.sub-menu.open {
+    transform: rotate(90deg);
+}
+
+
+
+
+.category-div {
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    gap:10px;
+    margin-left:40px;
+    max-height:0px;
+    transition:max-height 0.9s ease;
+    overflow:hidden;
+}
+
+
+.shirt {
+    margin-top:10px;
+    color: black;
+}
+
+.cate {
+    color: black;
+}
+
+
+
+.category-div.open {
+    max-height:200px;
+}
+
+.shirt:hover  .cate-line{
+    display:block;
+    opacity:1;
+    width:100%;
+}
+
+.cate:hover  .cate-line{
+    display:block;
+    opacity:1;
+    width:100%;
+}
+
+.cate-line {
+    background-color:black;
+    width:1px;
+    height:1px;
+    opacity:0;
+    transition: 0.50s;
+    border:none;
+    margin:0px;
+}
+
+
+
+
+
+.menu-div {
+    color:black;
+    margin-bottom:10px ;
+    font-weight: 400;
+}
+.menu-div:hover {
+    color:black;
+}
+
+
+
+.menu:hover .menu-line {
+    display:block;
+    opacity:1;
+    width:100%;
+}
+
+.menu-line {
+    background-color:black;
+    width:1px;
+    height:1px;
+    opacity:0;
+    transition: 0.50s;
+    border:none;
+    margin:0px;
+}
+
+
+
+

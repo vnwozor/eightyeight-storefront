@@ -1,0 +1,202 @@
+import React, { useEffect, useState } from 'react'
+import { createContext } from 'react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+
+export const ShopContext = createContext()
+
+const ShopContextProvider = ({children}) => {
+
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
+
+    const [products, setProducts] = useState([])
+    const [cartItem, setCartItem] = useState([])
+    const [orders, setOrders] = useState([])   // holds placed orders (for Track-Order page)
+
+    const navigate = useNavigate('')
+
+    // fetch all products from the backend
+    const getProductsData = async () => {
+        try {
+            const response = await axios.get(backendUrl + '/api/product/list')
+            if (response.data.success) {
+                setProducts(response.data.products)
+            } else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Could not load products')
+        }
+    }
+
+    useEffect(() => {
+        getProductsData()
+    }, [])
+
+    const addToCart = (id,size,quantity) => {
+
+        if(!size) {
+            toast.error('Select Product Size')
+            return;
+        }
+        let cartData = structuredClone(cartItem)
+
+        const existingItem = cartData.find((item) => item.id === id && item.size === size)
+
+        if (existingItem) {
+            existingItem.quantity += quantity
+        } else {
+            cartData.push({id, size, quantity:quantity})
+        }
+
+        setCartItem(cartData)
+        toast.success('Added To Cart')
+    }
+
+
+    const removeFromCart  = (id,size) => {
+
+        const cartData = cartItem.filter ((item) => !(item.id === id && item.size === size))
+
+        setCartItem(cartData)
+
+        toast.info('Removed from cart')
+    }
+
+
+    const getCartCount = () => {
+        if (cartItem.length === 0) {
+            return null
+        } else {  
+            return cartItem.length ;  
+        }   
+    }
+
+    const updateQuantity = (id, size, quantity) => {
+        let cartData = structuredClone(cartItem);
+
+        const existingItem = cartData.find(
+            (item) => item.id === id && item.size === size
+        );
+
+        if (existingItem) {
+            existingItem.quantity = quantity;
+        }
+
+        setCartItem(cartData);
+    };
+
+    const DELIVERYFEE = 10000;
+
+    const getTotalCart = () => {
+
+        const subtotal = cartItem.reduce((sum, item) => {
+            const product = products.find((p) => p._id === item.id);
+        
+        return product ? sum + product.price * item.quantity : sum;
+        }, 0);
+
+        const deliveryFee = subtotal > 0 ? DELIVERYFEE : 0;
+
+        return { subtotal, deliveryFee, total: subtotal + deliveryFee };
+    };
+
+
+    const placeOrder = async (deliveryInfo) => {
+
+        if (cartItem.length === 0) {
+            toast.error('Your cart is empty')
+            return;
+        }
+
+        const { subtotal, deliveryFee, total } = getTotalCart();
+
+        const orderedItems = cartItem.map((cartEntry) => {
+            const product = products.find((p) => p._id === cartEntry.id);
+            return {
+                productId: cartEntry.id,
+                size: cartEntry.size,
+                quantity: cartEntry.quantity,
+                name: product?.name,
+                price: product?.price,
+                image: product?.images?.[0],
+            };
+        });
+
+        // combine your form's fields into what the backend expects
+        const customerName = `${deliveryInfo.firstName} ${deliveryInfo.lastName}`
+        const address = `${deliveryInfo.street}, ${deliveryInfo.state}, ${deliveryInfo.country}`
+
+        try {
+            const response = await axios.post(backendUrl + '/api/order/place', {
+                items: orderedItems,
+                subtotal,
+                deliveryFee,
+                total,
+                customerName,
+                email: deliveryInfo.email,
+                phone: deliveryInfo.phone,
+                address,
+                city: deliveryInfo.city,
+                note: deliveryInfo.estimatedDelivery
+            })
+
+            if (response.data.success) {
+                const newOrder = {
+                    orderId: response.data.orderId,
+                    items: orderedItems,
+                    deliveryInfo,
+                    subtotal,
+                    deliveryFee,
+                    total,
+                    date: new Date().toLocaleDateString('en-GB', {
+                        day: 'numeric', month: 'long', year: 'numeric'
+                    }),
+                    status: 'pending',
+                };
+
+                setOrders((prevOrders) => [newOrder, ...prevOrders]);
+
+                // remember this order on this device, so it survives a refresh
+                const savedIds = JSON.parse(localStorage.getItem('myOrderIds') || '[]');
+                localStorage.setItem('myOrderIds', JSON.stringify([response.data.orderId, ...savedIds]));
+
+                setCartItem([]); // clear cart after order is placed
+                navigate('/Track-Order');
+            } else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Could not place order, please try again')
+        }
+    };
+
+
+    const value = {
+        products,cartItem,
+        setCartItem,
+        addToCart,
+        removeFromCart,
+        getCartCount,
+        updateQuantity,
+        getTotalCart,
+        orders,        
+        placeOrder,     
+        navigate
+    }
+
+    
+
+
+    return (
+      <ShopContext.Provider value={value}>
+          {children}
+      </ShopContext.Provider>
+      
+    )
+}
+
+export default ShopContextProvider

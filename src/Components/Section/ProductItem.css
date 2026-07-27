@@ -1,0 +1,80 @@
+
+
+
+
+
+
+
+.product-div:hover .img-div img {
+    height:160px;
+}
+
+
+
+.img-div {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:rgb(244, 240, 240);
+    width:200px;
+    height:225px;
+    margin-bottom:14px;
+}
+
+
+
+.img-div img {
+    height:140px;
+    transition: height 0.15s ease-in-out;
+}
+
+@media (max-width: 400px) {
+    .img-div {
+        width: 170px;
+        height: 200px;
+        background-color: transparent;
+    }
+
+    .img-div img {
+        height:100px;
+    }
+
+    .product-div:hover .img-div img {
+        height:120px;
+    }
+}
+
+.product-name {
+    margin:0px;
+    color:black;
+}
+
+.sold-stamp-div {
+    display:flex;
+    align-items:center;
+    margin-top:2px;
+}
+
+.sold-stamp {
+    padding:4px 8px;
+    background-color:rgb(128, 0, 0);
+    color:white;
+    text-transform:uppercase;
+    border-radius:35px;
+    font-size:12px;
+    margin:0px;
+}
+
+
+.product-price {
+    display:flex;
+    align-items:center;
+    margin:0px;
+    font-size:14px;
+    color:rgb(59, 59, 59);
+}
+
+.naira-icon {
+    height:20px;
+    margin-right:2px;
+}

@@ -1,0 +1,12 @@
+.shirt-heading {
+    font-size:40px;
+    color:black;
+    margin:0px;
+}
+
+
+@media (max-width: 580px) {
+    .shirt-heading {
+        font-size:30px;
+    }
+}

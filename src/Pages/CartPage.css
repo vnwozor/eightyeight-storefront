@@ -1,0 +1,171 @@
+.cart-main {
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    
+    margin-top:6%;
+    margin-left:40px;
+    margin-right:40px;
+}
+
+@media (max-width: 500px) {
+    .cart-main {
+        margin-top:14%;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 830px) {
+    .cart-main {
+        margin-top:14%;
+    }
+}
+
+
+.empty-cart {
+    margin-top:140px;
+}
+
+.cart-div {
+    display:flex;
+    flex-direction:column;
+    margin-top:40px;
+}
+.cart-heading-info {
+    display:flex;
+    justify-content:space-between
+}
+
+.product-p {
+    width:270px;
+}
+
+
+.cart-heading-info p {
+    font-size:16px;
+    margin:8px;
+}
+
+
+
+
+
+
+
+.display-main {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border:none;
+    border-top:1px solid black;
+}
+
+.cart-product-div {
+    display:flex;
+    align-items:center;
+    margin:20px 0px;
+}
+
+.cart-image-div {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color:rgb(244, 240, 240);
+    width:90px;
+    height:70px;
+    margin-right:12px;
+}
+
+.cart-image {
+    height:50px;
+}
+
+.cart-info {
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.cart-name {
+    margin:0px;
+}
+
+.cart-price {
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.cart-price p {
+    display:flex;
+    align-items:center;
+    margin: 0px;
+}
+
+.cart-price  div{
+    padding:8px 12px;
+    background-color:rgb(217, 217, 217);
+}
+
+
+
+.quantity-input {
+    width:30px;
+    margin: 0px;
+    padding:8px;
+}
+
+.remove-btn {
+    height:20px;
+    margin-right:23px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.proceed-btn {
+    display:flex;
+    align-self:flex-end;
+    justify-content:center;
+    color:white;
+    background-color:rgb(128, 0, 0);
+    border:1px solid rgb(128, 0, 0);
+    padding:15px 0px;
+    width:230px;
+    margin-top:20px;
+    font-weight:600;
+    transition:color 0.15s ease, background-color 0.15s ease, border 0.15s ease;
+}
+
+.proceed-btn:hover {
+    color: rgb(128, 0, 0);
+    background-color:white;
+    border:1px solid rgb(128, 0, 0);
+}
+
+
+
+
+
+
+
+
+
+
+.cart-empty-msg {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+    font-size: 1.1rem;
+}
+
+

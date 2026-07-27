@@ -1,0 +1,87 @@
+.product-grid {
+    display:grid;
+    grid-template-columns:repeat(min(var(--cols, 4), 4), 1fr);
+    gap:20px;
+}
+
+
+@media (max-width: 580px) {
+    .product-grid {
+        gap:8px;
+        grid-template-columns:repeat(min(var(--cols, 4), 2), 1fr); 
+    }
+}
+
+
+@media (min-width: 581px) and (max-width: 719px) {
+    .product-grid {
+        grid-template-columns:repeat(min(var(--cols, 4), 2), 1fr); 
+    }
+}
+
+@media (min-width: 720px) and (max-width: 950px) {
+    .product-grid {
+        grid-template-columns:repeat(min(var(--cols, 4), 3), 1fr); 
+    }
+}
+
+
+
+
+
+
+
+.shirt-section {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.show-div {
+    display:flex;
+    flex-direction:column;
+    align-items:end;
+}
+
+
+.show-more {
+    display:flex;
+    flex-direction:column;
+    align-items:start;
+    color:rgb(128, 0, 0);
+    margin:0px;
+    text-decoration:none;
+}
+.show-more:hover {
+    color:rgb(128, 0, 0);
+}
+
+
+.show-more:hover .show-more-line {
+    opacity:1;
+    width:100%;
+}
+
+
+.show-more-line {
+    background-color:rgb(128, 0, 0);
+    width:0px;
+    height:1px;
+    opacity:0;
+    transition: 0.50s;
+}
+
+
+
+
