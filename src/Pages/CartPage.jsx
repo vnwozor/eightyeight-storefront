@@ -51,6 +51,8 @@ export const CartPage = () => {
 
                                     const productData = products.find((product) => product._id === item.id)
 
+                                    if (!productData) return null
+
                                     const priceTimesQuantity = () => {
                                         return productData.price * item.quantity
                                     }

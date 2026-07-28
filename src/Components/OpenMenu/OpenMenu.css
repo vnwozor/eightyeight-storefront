@@ -157,6 +157,30 @@ div {
     margin:0px;
 }
 
+.cartcount-nav {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 6px;
+}
 
+.cartcount-nav p {
+    padding:0px;
+    margin:0px;
+    margin-bottom:2px;
+}
+
+.cartnavcount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    background-color: black;
+    color: white;
+    font-size: 11px;
+    border-radius: 50%;
+}
 
 

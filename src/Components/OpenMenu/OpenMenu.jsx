@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './OpenMenu.css'
 import { assets } from '../../Assets/all_products'
 import { Link, NavLink } from 'react-router-dom'
 import { RightSide } from './RightSide.jsx'
+import { ShopContext } from '../../Context/ShopContext.jsx'
 
 export const OpenMenu = ({onMenu, setOnMenu}) => {
 
@@ -22,6 +23,7 @@ export const OpenMenu = ({onMenu, setOnMenu}) => {
     },[onMenu])
 
 
+    const {getCartCount} = useContext(ShopContext)
 
 
     const [shopCate, setShopCate] = useState(false);
@@ -107,7 +109,12 @@ export const OpenMenu = ({onMenu, setOnMenu}) => {
             <NavLink onClick={() => setOnMenu(!onMenu)} to='/Cart' className='open-menu-div'>
                 <div className='menu'>
                     <div>
-                        CART
+                        <div className='cartcount-nav'>
+                            <p>CART</p>
+                            {getCartCount() > 0 && (
+                                <div className='cartnavcount'>{getCartCount()}</div>
+                            )}
+                        </div>
                         <hr className='menu-line' />
                     </div>
                 </div>

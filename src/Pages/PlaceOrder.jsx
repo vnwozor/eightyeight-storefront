@@ -4,6 +4,7 @@ import { Title } from '../Components/Section/Section Title/Title'
 import { CartTotal } from '../Components/CartTotal/CartTotal'
 import { ShopContext } from '../Context/ShopContext'
 import { toast } from 'react-toastify'
+import { nigeriaLocations } from '../Data/NigeriaLoctions.js'
 
 export const PlaceOrder = () => {
 
@@ -16,7 +17,7 @@ export const PlaceOrder = () => {
         street: '',
         city: '',
         state: '',
-        country: '',
+        country: 'Nigeria',
         phone: ''
     })
 
@@ -25,7 +26,12 @@ export const PlaceOrder = () => {
         setFormData((prev) => ({ ...prev, [name]: value }))
     }
 
-    // NEW: calculates a delivery date 3 days from today
+    // when state changes, reset city since the options depend on it
+    const handleStateChange = (e) => {
+        const newState = e.target.value
+        setFormData((prev) => ({ ...prev, state: newState, city: '' }))
+    }
+
     const getEstimatedDeliveryDate = () => {
         const date = new Date()
         date.setDate(date.getDate() + 3)
@@ -45,6 +51,8 @@ export const PlaceOrder = () => {
 
         placeOrder({ ...formData, estimatedDelivery: getEstimatedDeliveryDate() })
     }
+
+    const availableCities = formData.state ? nigeriaLocations[formData.state] || [] : []
 
     return (
         <div className='placeorder-main'>
@@ -68,13 +76,23 @@ export const PlaceOrder = () => {
 
                     <div className='placeorder-input-div'>
 
-                        <input type="text" name="city" value={formData.city} onChange={handleChange} placeholder='City' className='placeorder-input-small' />
+                        <select name="state" value={formData.state} onChange={handleStateChange} className='placeorder-input-small'>
+                            <option value="">Select State</option>
+                            {Object.keys(nigeriaLocations).map((state) => (
+                                <option key={state} value={state}>{state}</option>
+                            ))}
+                        </select>
 
-                        <input type="text" name="state" value={formData.state} onChange={handleChange} placeholder='State' className='placeorder-input-small' />
+                        <select name="city" value={formData.city} onChange={handleChange} className='placeorder-input-small' disabled={!formData.state}>
+                            <option value="">Select City</option>
+                            {availableCities.map((city) => (
+                                <option key={city} value={city}>{city}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className='placeorder-input-div'>
-                        <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder='Country' className='placeorder-input-small' />
+                        <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder='Country' className='placeorder-input-small' readOnly />
 
                         <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder='Phone Number' className='placeorder-input-small' />
                     </div>
@@ -90,7 +108,7 @@ export const PlaceOrder = () => {
 
             <div>
 
-                <CartTotal />
+                <CartTotal state={formData.state} />
 
                 <div>
                     <button onClick={handlePlaceOrder} className='proceed-btn'>

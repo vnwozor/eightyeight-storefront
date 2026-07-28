@@ -26,7 +26,12 @@ export const Navbar = () => {
 
 			<div>
 
-				<img onClick={() => setOnMenu(!onMenu)}  src={assets.menu_bar} className='menu-bar-icon' />
+				<div  onClick={() => setOnMenu(!onMenu)} className='cartcount-di'>
+					<img  src={assets.menu_bar} className='menu-bar-icon' />
+					{getCartCount() > 0 && (
+						<div className='cartccount'>{getCartCount()}</div>
+					)}
+				</div>
 			
 				
 		
@@ -71,7 +76,7 @@ export const Navbar = () => {
 								<hr className='shirt-line' />
 							</Link>
 
-							<Link to='/Shoes' className='cate-main'>
+							<Link className='cate-main'>
 								<p>
 									SHOES
 								</p>
@@ -88,8 +93,14 @@ export const Navbar = () => {
 					
 					
 					<NavLink  to='/Cart' className='menu-nav'>
-						<p>CART</p>
-						<hr className='nav-line' />
+						<div className='cartcount-div'>
+							<p>CART</p>
+							<hr className='nav-line' />
+
+							{getCartCount() > 0 && (
+								<div className='cartcount'>{getCartCount()}</div>
+							)}
+						</div>
 					</NavLink>
 					
 					<NavLink  to='/Track-Order' className='menu-nav'>

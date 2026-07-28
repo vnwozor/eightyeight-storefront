@@ -6,7 +6,7 @@
 .wallpaper {
     display:flex;
     position:relative;
-    top:-100px;
+    top:-120px;
     width:100%;
     z-index:-100;
 }

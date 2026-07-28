@@ -11,8 +11,18 @@ const ShopContextProvider = ({children}) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const [products, setProducts] = useState([])
-    const [cartItem, setCartItem] = useState([])
+    const [cartItem, setCartItem] = useState(() => {
+        const savedCart = localStorage.getItem('cartItem')
+        return savedCart ? JSON.parse(savedCart) : []
+    })
+
+    useEffect(() => {
+        localStorage.setItem('cartItem', JSON.stringify(cartItem))
+    }, [cartItem])
+
+
     const [orders, setOrders] = useState([])   // holds placed orders (for Track-Order page)
+    const [settings, setSettings] = useState({ abujaFee: 5000, outsideAbujaFee: 10000 })
 
     const navigate = useNavigate('')
 
@@ -31,8 +41,21 @@ const ShopContextProvider = ({children}) => {
         }
     }
 
+    // fetch current delivery fee settings from the backend
+    const getSettingsData = async () => {
+        try {
+            const response = await axios.get(backendUrl + '/api/settings/get')
+            if (response.data.success) {
+                setSettings(response.data.settings)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         getProductsData()
+        getSettingsData()
     }, [])
 
     const addToCart = (id,size,quantity) => {
@@ -88,9 +111,7 @@ const ShopContextProvider = ({children}) => {
         setCartItem(cartData);
     };
 
-    const DELIVERYFEE = 10000;
-
-    const getTotalCart = () => {
+    const getTotalCart = (state) => {
 
         const subtotal = cartItem.reduce((sum, item) => {
             const product = products.find((p) => p._id === item.id);
@@ -98,7 +119,11 @@ const ShopContextProvider = ({children}) => {
         return product ? sum + product.price * item.quantity : sum;
         }, 0);
 
-        const deliveryFee = subtotal > 0 ? DELIVERYFEE : 0;
+        let deliveryFee = 0
+        if (subtotal > 0 && state) {
+            const isAbuja = state.trim().toLowerCase() === 'abuja (fct)'
+            deliveryFee = isAbuja ? settings.abujaFee : settings.outsideAbujaFee
+        }
 
         return { subtotal, deliveryFee, total: subtotal + deliveryFee };
     };
@@ -111,7 +136,7 @@ const ShopContextProvider = ({children}) => {
             return;
         }
 
-        const { subtotal, deliveryFee, total } = getTotalCart();
+        const { subtotal, deliveryFee, total } = getTotalCart(deliveryInfo.state);
 
         const orderedItems = cartItem.map((cartEntry) => {
             const product = products.find((p) => p._id === cartEntry.id);
@@ -159,12 +184,33 @@ const ShopContextProvider = ({children}) => {
 
                 setOrders((prevOrders) => [newOrder, ...prevOrders]);
 
-                // remember this order on this device, so it survives a refresh
-                const savedIds = JSON.parse(localStorage.getItem('myOrderIds') || '[]');
-                localStorage.setItem('myOrderIds', JSON.stringify([response.data.orderId, ...savedIds]));
-
                 setCartItem([]); // clear cart after order is placed
-                navigate('/Track-Order');
+
+                // open Korapay payment popup for this order
+                window.Korapay.initialize({
+                    key: import.meta.env.VITE_KORAPAY_PUBLIC_KEY,
+                    reference: response.data.orderId,
+                    amount: total,
+                    currency: "NGN",
+                    customer: {
+                        name: customerName,
+                        email: deliveryInfo.email,
+                    },
+                    onClose: () => {
+                        toast.info('Payment cancelled. Your order was not confirmed.')
+                    },
+                    onSuccess: () => {
+                        // only now do we remember this order on this device
+                        const savedIds = JSON.parse(localStorage.getItem('myOrderIds') || '[]');
+                        localStorage.setItem('myOrderIds', JSON.stringify([response.data.orderId, ...savedIds]));
+
+                        toast.success('Payment successful!')
+                        navigate('/Track-Order');
+                    },
+                    onFailed: () => {
+                        toast.error('Payment failed. Please try placing your order again.')
+                    }
+                });
             } else {
                 toast.error(response.data.message)
             }
@@ -183,6 +229,7 @@ const ShopContextProvider = ({children}) => {
         getCartCount,
         updateQuantity,
         getTotalCart,
+        settings,
         orders,        
         placeOrder,     
         navigate

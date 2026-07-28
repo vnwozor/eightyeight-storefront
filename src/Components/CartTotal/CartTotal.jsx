@@ -4,11 +4,11 @@ import { Title } from '../Section/Section Title/Title'
 import { assets } from '../../Assets/all_products'
 import { ShopContext } from '../../Context/ShopContext'
 
-export const CartTotal = () => {
+export const CartTotal = ({ state }) => {
 
     const {getTotalCart, navigate } = useContext(ShopContext)
     
-    const { subtotal, deliveryFee, total } = getTotalCart()
+    const { subtotal, deliveryFee, total } = getTotalCart(state)
 
     const formatCurrency = (amount) => {
         return `${amount.toLocaleString()}`
@@ -31,6 +31,9 @@ export const CartTotal = () => {
 
         return `${day}${getOrdinal(day)} ${month}, ${year}`
     }
+
+    const estimatedDeliveryDate = new Date()
+    estimatedDeliveryDate.setDate(estimatedDeliveryDate.getDate() + 3)
 
     return (
         <div className='cart-total-main'>
@@ -64,7 +67,7 @@ export const CartTotal = () => {
                 <div className='cart-total-sub'>
                     <p>Delivery Date:</p>
                     <div>
-                        {formatDate(new Date())}
+                        {formatDate(estimatedDeliveryDate)}
                     </div>
                 </div>
             </div>
