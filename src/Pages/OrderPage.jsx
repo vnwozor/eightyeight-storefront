@@ -11,7 +11,6 @@ export const OrderPage = () => {
     const [orders, setOrders] = useState([])
     const [email, setEmail] = useState('')
 
-    // load orders saved on this device
     const fetchMyOrders = async () => {
         try {
             const savedIds = JSON.parse(localStorage.getItem('myOrderIds') || '[]');
@@ -35,7 +34,6 @@ export const OrderPage = () => {
         fetchMyOrders();
     }, []);
 
-    // look up orders by email instead (works on any device)
     const searchByEmail = async (e) => {
         e.preventDefault();
         try {
@@ -82,7 +80,7 @@ export const OrderPage = () => {
 
                                 <div className='orderpage-info'>
 
-                                    <img className='orderpage-img' src={item.image ? backendUrl + item.image : ''} alt="" />
+                                    <img className='orderpage-img' src={item.image || ''} alt="" />
 
                                     <div className='orderpage-des'>
                                         <p className='orderprod-name'>

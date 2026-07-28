@@ -5,8 +5,6 @@ import './Product.css'
 import { assets } from '../Assets/all_products'
 import { RelatedProduct } from '../Components/Section/RelatedProduct'
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL
-
 export const Product = () => {
 
     const { productId } = useParams();
@@ -21,7 +19,7 @@ export const Product = () => {
         products.map((item) => {
             if(item._id === productId) {
                 setProductData(item)
-                setImage(backendUrl + item.images[0])
+                setImage(item.images[0])
                 return null;
             }
         })
@@ -66,7 +64,7 @@ export const Product = () => {
                             return (
                             
                                 <div className='mag' key={index}>
-                                    <img onClick={ () => setImage(backendUrl + item) }  src={backendUrl + item} alt="" className='showcase-img' />
+                                    <img onClick={ () => setImage(item) }  src={item} alt="" className='showcase-img' />
                                 </div>
                                     
                             )

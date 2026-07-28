@@ -8,15 +8,15 @@ import E8_slides from "./E8-SL-001.svg"
 import wallpaper_1 from './wallpaper 2.jpeg'
 import wallpaper_2 from './wallpaper 3.jpeg'
 import wallpaper_3 from './wallpaper 4.jpeg'
-import wallpaper_4 from './wallpaper 5.png'
+import wallpaper_4 from './wallpaper 5.PNG'
 import wallpaper_5 from './wallpaper 6.jpeg'
 import wallpaper_6 from './wallpaper 7.jpeg'
 import wallpaper_7 from './wallpaper 8.jpeg'
-import wallpaper_8 from './wallpaper 9.png'
+import wallpaper_8 from './wallpaper 9.PNG'
 import wallpaper_9 from './wallpaper 10.jpeg'
 import wallpaper_10 from './wallpaper 11.jpeg'
-import wallpaper_11 from './wallpaper 12.png'
-import wallpaper_12 from './wallpaper 13.png'
+import wallpaper_11 from './wallpaper 12.PNG'
+import wallpaper_12 from './wallpaper 13.PNG'
 
 
 /* Product Image Showcase */

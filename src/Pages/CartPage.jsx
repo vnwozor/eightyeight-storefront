@@ -63,7 +63,7 @@ export const CartPage = () => {
 
                                                 
                                                 <div className='cart-image-div'>
-                                                    <img className='cart-image' src={backendUrl + productData.images[0]}  />
+                                                    <img className='cart-image' src={productData.images[0]}  />
                                                 </div>
                                                 
 

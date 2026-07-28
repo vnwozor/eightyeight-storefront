@@ -5,8 +5,6 @@ import { Title } from './Section Title/Title.jsx'
 import { assets } from '../../Assets/all_products.js'
 import { ProductItem } from './ProductItem.jsx'
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL
-
 export const RelatedProduct = ({ category, currentProductId }) => {
 
     const {products} = useContext(ShopContext);
@@ -38,7 +36,7 @@ export const RelatedProduct = ({ category, currentProductId }) => {
                 <div className='product-grid'>
                     {related.map((item, index) => {
                         return (
-                            <ProductItem key={index} id={item._id} name={item.name} height={item.height} image={item.images?.[0] ? backendUrl + item.images[0] : ''} price={item.price} outOfStock={item.outOfStock}/>
+                            <ProductItem key={index} id={item._id} name={item.name} height={item.height} image={item.images?.[0] || ''} price={item.price} outOfStock={item.outOfStock}/>
                         )
                     })}
                 </div>
