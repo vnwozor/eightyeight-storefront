@@ -40,7 +40,11 @@ export const PlaceOrder = () => {
         })
     }
 
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
     const handlePlaceOrder = () => {
+
+        if (isSubmitting) return
 
         const { firstName, lastName, email, street, city, state, country, phone } = formData
 
@@ -49,8 +53,10 @@ export const PlaceOrder = () => {
             return;
         }
 
+        setIsSubmitting(true)
         placeOrder({ ...formData, estimatedDelivery: getEstimatedDeliveryDate() })
     }
+
 
     const availableCities = formData.state ? nigeriaLocations[formData.state] || [] : []
 
@@ -111,8 +117,8 @@ export const PlaceOrder = () => {
                 <CartTotal state={formData.state} />
 
                 <div>
-                    <button onClick={handlePlaceOrder} className='proceed-btn'>
-                        PLACE ORDER
+                    <button onClick={handlePlaceOrder} className='proceed-btn' disabled={isSubmitting}>
+                        {isSubmitting ? 'Placing Order...' : 'PLACE ORDER'}
                     </button>
                 </div>
 
