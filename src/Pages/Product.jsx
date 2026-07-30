@@ -170,10 +170,7 @@ export const Product = () => {
 
 
                         <p className='preview-description-info'>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            hfjrbe Lorem ipsum dolor sit amet consectetur adipisicing 
-                            elit. hfjrbe Lorem ipsum dolor sit amet consectetur 
-                            adipisicing elit. hfjrbe
+                            {productData.description}
                         </p>
                     </div>
 
