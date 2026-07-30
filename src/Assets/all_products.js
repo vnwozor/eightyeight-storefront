@@ -33,6 +33,7 @@ import menu_bar from './icons/menu-bar.svg'
 import home_icon from './icons/home-icon.svg'
 import search_icon from './icons/search-icon.svg'
 import profile_icon from './icons/profile-icon.svg'
+import made_logo from './icons/made-logo.svg'
 
 /* logos */
 import logo from './icons/logo.svg'
@@ -67,7 +68,8 @@ export const assets = {
     wallpaper_9,
     wallpaper_10,
     wallpaper_11,
-    wallpaper_12
+    wallpaper_12,
+    made_logo
 
     
 };

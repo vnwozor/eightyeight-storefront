@@ -8,10 +8,9 @@ import { Wallpaper } from '../Components/Section/Wallpaper/Wallpaper.jsx'
 
 export const HomePage = () => {
     return (
-        <div>
+        <>
             <Wallpaper/>
                   
-            
             <Shirts />
 
             <Trousers/>
@@ -21,6 +20,6 @@ export const HomePage = () => {
             <Accessories/>
             
 
-        </div>
+        </>
     )
 }

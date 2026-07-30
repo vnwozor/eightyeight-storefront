@@ -17,6 +17,14 @@ export const Footer = () => {
   return (
     <div className='footer-main'>
 
+        <div className='made-a'>
+            <a href="https://www.instagram.com/oncode.co?igsh=cHMyb2V3ZXdjbncw&utm_source=qr" >
+                <button className='made-btn'>
+                    Made by <img src={assets.made_logo} alt="" />  Oncode
+                </button>
+            </a>
+        </div>
+
         {/* <div className='offer-div'>
             
             <h1 className='offer-title'>

@@ -129,18 +129,21 @@ export const OpenMenu = ({onMenu, setOnMenu}) => {
                 </div>
             </NavLink>
 
-            <div className='open-menu-div'>
+            {/* <div className='open-menu-div'>
                 <div className='menu'>
                     <div>
                         PROFILE
                         <hr className='menu-line' />
                     </div>
                 </div>
-            </div>
+            </div> */}
+
+        
+            
 
         </div>
 
-
+        
 
         <RightSide onMenu={onMenu} setOnMenu={setOnMenu} />
 

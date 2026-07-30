@@ -8,6 +8,26 @@
 
 
 
+.made-a {
+    position:absolute;
+    right:10px;
+    top:-45px;
+}
+
+.made-btn {
+    display: flex;
+    padding:8px 16px;
+    padding-top:10px;
+    background-color:rgb(27, 27, 27);
+    color:white;
+    cursor: pointer;
+    border:none;
+    border-radius:20px;
+}
+
+.made-btn img{
+    height:18px;
+}
 
 /* 
 
