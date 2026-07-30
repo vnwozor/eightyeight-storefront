@@ -42,7 +42,7 @@ export const PlaceOrder = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handlePlaceOrder = () => {
+    const handlePlaceOrder = async () => {
 
         if (isSubmitting) return
 
@@ -54,7 +54,8 @@ export const PlaceOrder = () => {
         }
 
         setIsSubmitting(true)
-        placeOrder({ ...formData, estimatedDelivery: getEstimatedDeliveryDate() })
+        await placeOrder({ ...formData, estimatedDelivery: getEstimatedDeliveryDate() })
+        setIsSubmitting(false)
     }
 
 
