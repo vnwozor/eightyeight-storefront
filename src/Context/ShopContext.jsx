@@ -192,6 +192,7 @@ const ShopContextProvider = ({children}) => {
                     reference: response.data.orderId,
                     amount: total,
                     currency: "NGN",
+                    notification_url: "https://eightyeight-backend.onrender.com/api/order/korapay-webhook",
                     customer: {
                         name: customerName,
                         email: deliveryInfo.email,
