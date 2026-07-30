@@ -301,7 +301,7 @@
 
 
 .cartcount-di {
-    display: flex;
+    display:none;
     align-items: center;
     gap: 6px;
     position:relative;
@@ -326,6 +326,6 @@
 
 @media (max-width: 830px) {
     .cartcount-di {
-        display:none;
+        display:flex;
     }
 }
