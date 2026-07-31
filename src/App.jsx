@@ -29,7 +29,7 @@ function App() {
         <Navbar/>
 
 
-        {/* <div className="page-content"> */}
+      
 
 
         
@@ -42,8 +42,8 @@ function App() {
             
             <Route path='/Shirts' element={<Shirts/>} />
             <Route path='/Trousers' element={<Trousers/>} />
-            <Route path='/Accessories' element={<Accessories/>} />
             <Route path='/Shoes' element={<Shoes/>} />
+            <Route path='/Accessories' element={<Accessories/>} />
 
 
             {/* footer link */}
@@ -56,10 +56,8 @@ function App() {
             <Route path='/Place-Order' element={<PlaceOrder/>} />
             <Route path='/Track-Order' element={<OrderPage/>} />
           </Routes>
-{/* 
-        </div> */}
 
-        <Footer />
+  
 
       </div>
         

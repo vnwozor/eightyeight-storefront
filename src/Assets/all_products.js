@@ -41,6 +41,11 @@ import mail_logo from './icons/mail-logo.svg'
 import instagram_logo from './icons/instagram-logo.svg'
 import whatsapp_logo from './icons/WhatsApp-Logo.svg'
 
+import instagramblack_logo from './icons/instagramBlack-icon.svg'
+import youtubeblack_logo from './icons/youtubeBlack-icon.svg'
+import tiktok_logo from './icons/tik-tok-icon.png'
+import pinterest_logo from './icons/pinterest-icon.png'
+
 export const assets = {
     naira_icon,
     cart_icon,
@@ -69,8 +74,11 @@ export const assets = {
     wallpaper_10,
     wallpaper_11,
     wallpaper_12,
-    made_logo
-
+    made_logo,
+    instagramblack_logo,
+    youtubeblack_logo,
+    tiktok_logo,
+    pinterest_logo
     
 };
 

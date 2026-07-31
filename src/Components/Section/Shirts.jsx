@@ -5,6 +5,7 @@ import { Title } from './Section Title/Title.jsx'
 import { assets } from '../../Assets/all_products.js'
 import { ProductItem } from './ProductItem.jsx'
 import { Link, useLocation } from 'react-router-dom'
+import { Footer } from '../Footer/Footer.jsx'
 
 
 export const Shirts = () => {
@@ -27,40 +28,44 @@ export const Shirts = () => {
     }
 
     return columnCount > 0 ? (
-        <div className='shirt-section'>
+        <>
+            <div className='shirt-section'>
 
-            <div>
+                <div>
 
-                <Title title={'SHIRTS'}/>
-                
-            
-
-                <div className='item-grid' style={{ '--cols': columnCount }}>
-                    {produe.map((item, index) => {
-                        return (
-                            <ProductItem key={index} id={item._id} name={item.name} height={item.height} image={item.images?.[0] || ''} price={item.price} outOfStock={item.outOfStock}/>
-                        )
-                    })}
-                </div>
-                
- 
+                    <Title title={'SHIRTS'}/>
+                    
                 
 
-                <div className='show-div'>
+                    <div className='item-grid' style={{ '--cols': columnCount }}>
+                        {produe.map((item, index) => {
+                            return (
+                                <ProductItem key={index} id={item._id} name={item.name} height={item.height} image={item.images?.[0] || ''} price={item.price} outOfStock={item.outOfStock}/>
+                            )
+                        })}
+                    </div>
+                    
+    
+                    
 
-                    <Link to='/Shirts' className='show-more' href="#">
-                        <div>
-                            Show More {'>'}
-                        </div>
-                        <div className='show-more-line' />
+                    <div className='show-div'>
+
+                        <Link to='/Shirts' className='show-more' href="#">
+                            <div>
+                                Show More {'>'}
+                            </div>
+                            <div className='show-more-line' />
+                            
+                        </Link>
                         
-                    </Link>
+                    </div>
+                    
                     
                 </div>
                 
-                
             </div>
-            
-        </div>
+
+            <Footer/>
+        </>
     ) : <></>
 }

@@ -70,7 +70,7 @@ export const Wallpaper = () => {
         
         const intervalId = setInterval(() => {
             setLetCount((prev) => (prev < 11 ? prev + 1 : 0))
-        }, 10000)
+        }, 2000)
 
         return () => clearInterval(intervalId)
     }, [])

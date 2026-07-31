@@ -1,26 +1,32 @@
 import React from 'react'
-import { Shirts } from '../Components/Section/Shirts'
-import { Trousers } from '../Components/Section/Trousers'
-import { Accessories } from '../Components/Section/Accessories'
-import { Shoes } from '../Components/Section/Shoes'
+import { Footer } from '../Components/Footer/Footer'
+import { ShirtSingle } from './Single pages/ShirtSingle'
+import { TrouserSingle } from './Single pages/TrouserSingle'
+import { ShoeSingle } from './Single pages/ShoeSingle'
+import { AccessorySingle } from './Single pages/AccessorySingle'
 
 export const Allproducts = () => {
   return (
-    <div>
+    <>
+        <div>
 
 
-        <Shirts/>
+        
+          <ShirtSingle/>
 
-        <Trousers/>
+          <TrouserSingle/>
 
-        <Accessories/>
+          <ShoeSingle/>
 
-        <Shoes/>
-
-
-
+          <AccessorySingle/>
 
 
-    </div>
+
+
+
+        </div>
+        
+        <Footer/>
+    </>
   )
 }
