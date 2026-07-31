@@ -29,7 +29,7 @@ export const TrouserSingle = () => {
 
             <div>
 
-                <Title title={'TROUSERS'}/>
+                {/* <Title title={'TROUSERS'}/> */}
 
                 <div className='item-grid'  style={{ '--cols': columnCount }}>
                     {produe.map((item, index) => {

@@ -20,15 +20,15 @@ export const HomeFooter = () => {
                 <img src={assets.instagramblack_logo}  className='homefooter-png' />
             </a>
 
-            <a href="">
+            <a href="https://www.youtube.com/@8ighty8ight-xyz">
                 <img src={assets.youtubeblack_logo}  className='homefooter-png'/>
             </a>
 
-            <a href="">
+            <a href="https://www.tiktok.com/@8ighty8ight.ng?_r=1&_t=ZS-98Ui1LOLQoO">
                 <img src={assets.tiktok_logo} className='homefooter-png'/>
             </a>
 
-            <a href="">
+            <a href="https://pin.it/5V0MoZ7SL">
                 <img src={assets.pinterest_logo}  className='homefooter-png'/>
             </a>
             

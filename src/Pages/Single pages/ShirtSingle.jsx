@@ -30,7 +30,7 @@ export const ShirtSingle = () => {
 
             <div>
 
-                <Title title={'SHIRTS'}/>
+                {/* <Title title={'SHIRTS'}/> */}
                 
             
 

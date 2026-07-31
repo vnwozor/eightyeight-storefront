@@ -5,12 +5,20 @@
 }
 
 
-@media (max-width: 580px) {
+@media (max-width: 400px) {
+    .item-grid {
+        gap:18px;
+        grid-template-columns:repeat(min(var(--cols, 4), 2), 1fr); 
+    }
+}
+
+@media (min-width:401px) and (max-width: 580px) {
     .item-grid {
         gap:8px;
         grid-template-columns:repeat(min(var(--cols, 4), 2), 1fr); 
     }
 }
+
 
 
 @media (min-width: 581px) and (max-width: 719px) {
