@@ -76,7 +76,7 @@ export const Navbar = () => {
 								<hr className='shirt-line' />
 							</Link>
 
-							<Link className='cate-main'>
+							<Link to='/shoes' className='cate-main'>
 								<p>
 									SHOES
 								</p>
