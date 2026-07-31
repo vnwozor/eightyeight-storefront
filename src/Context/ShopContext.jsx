@@ -187,6 +187,8 @@ const ShopContextProvider = ({children}) => {
                 setCartItem([]); // clear cart after order is placed
 
                 // open Korapay payment popup for this order
+                let paymentHandled = false;
+
                 window.Korapay.initialize({
                     key: import.meta.env.VITE_KORAPAY_PUBLIC_KEY,
                     reference: response.data.orderId,
@@ -201,14 +203,21 @@ const ShopContextProvider = ({children}) => {
                         toast.info('Payment cancelled. Your order was not confirmed.')
                     },
                     onSuccess: () => {
-                        // only now do we remember this order on this device
+                        if (paymentHandled) return;
+                        paymentHandled = true;
+
+                        // only now do we remember this order on this device (avoiding duplicates)
                         const savedIds = JSON.parse(localStorage.getItem('myOrderIds') || '[]');
-                        localStorage.setItem('myOrderIds', JSON.stringify([response.data.orderId, ...savedIds]));
+                        if (!savedIds.includes(response.data.orderId)) {
+                            localStorage.setItem('myOrderIds', JSON.stringify([response.data.orderId, ...savedIds]));
+                        }
 
                         toast.success('Payment successful!')
                         navigate('/Track-Order');
                     },
                     onFailed: () => {
+                        if (paymentHandled) return;
+                        paymentHandled = true;
                         toast.error('Payment failed. Please try placing your order again.')
                     }
                 });
