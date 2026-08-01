@@ -9,6 +9,7 @@
     .item-grid {
         gap:18px;
         grid-template-columns:repeat(min(var(--cols, 4), 2), 1fr); 
+        margin:0px 20px;
     }
 }
 
@@ -95,5 +96,9 @@
 }
 
 
-
+@media (max-width: 400px) {
+    .show-div {
+        margin-right:20px;
+    }
+}
 
