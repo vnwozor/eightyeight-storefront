@@ -140,7 +140,7 @@ export const Footer = () => {
 
 
                     <div className={`link-div ${supportLine ? 'open' : ''}`} >
-                        <Link to='/Support/About Us' className='footer-link' href="#">
+                        <Link to='/Support/AboutUs' className='footer-link' href="#">
                             <div>
                                 About Us
                                 <div className='link-line' />

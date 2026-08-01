@@ -50,7 +50,7 @@ function App() {
 
             <Route path='/Resource/Policy' element={<PolicyPage/>}/>
             <Route path='/Resource/FAQ' element={<FaqPage/>}/>
-            <Route path='/Support/About Us' element={<AboutPage/>}/>
+            <Route path='/Support/AboutUs' element={<AboutPage/>}/>
 
 
             <Route path='/Place-Order' element={<PlaceOrder/>} />
