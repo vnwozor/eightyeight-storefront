@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://yoursite.com/sitemap.xml
+
+Sitemap: https://www.8ighty8ight.xyz/sitemap.xml
