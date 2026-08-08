@@ -57,7 +57,7 @@ export const Product = () => {
 
 
                         <div className='showcase-product'>
-                            <img src={image} />
+                            <img src={image} alt={productData.name} />
                         </div>
                         
                         <div className='showcase-img-div'>
@@ -66,7 +66,7 @@ export const Product = () => {
                                 return (
                                 
                                     <div className='mag' key={index}>
-                                        <img onClick={ () => setImage(item) }  src={item} alt="" className='showcase-img' />
+                                        <img onClick={ () => setImage(item) }  src={item} alt={`${productData.name} - view ${index + 1}`} className='showcase-img' />
                                     </div>
                                         
                                 )

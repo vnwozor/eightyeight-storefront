@@ -17,7 +17,7 @@ export const ProductItem = ({id,image,height,name,price,outOfStock}) => {
 
         
             <div className='img-div'>
-                <img src={image} />
+                <img src={image} alt={name} />
             </div>
 
             <div>
