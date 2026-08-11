@@ -39,14 +39,14 @@ export default async function handler(req, res) {
     xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
 
     staticPages.forEach((page) => {
-        xml += `  <url>\n    <loc>${page.loc}</loc>\n    <priority>${page.priority}</priority>\n  </url>\n`;
+        xml += `  <url>\n    <loc>${escapeXml(page.loc)}</loc>\n    <priority>${page.priority}</priority>\n  </url>\n`;
     });
 
     products.forEach((product) => {
-        const productUrl = `https://www.8ighty8ight.xyz/Product/${product._id}`;
+        const productUrl = escapeXml(`https://www.8ighty8ight.xyz/Product/${product._id}`);
         xml += `  <url>\n    <loc>${productUrl}</loc>\n    <priority>0.7</priority>\n`;
         (product.images || []).forEach((imgUrl) => {
-            xml += `    <image:image>\n      <image:loc>${imgUrl}</image:loc>\n      <image:title>${escapeXml(product.name)}</image:title>\n    </image:image>\n`;
+            xml += `    <image:image>\n      <image:loc>${escapeXml(imgUrl)}</image:loc>\n      <image:title>${escapeXml(product.name)}</image:title>\n    </image:image>\n`;
         });
         xml += `  </url>\n`;
     });
