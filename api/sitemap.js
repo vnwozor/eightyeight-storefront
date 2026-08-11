@@ -1,3 +1,5 @@
+import { get } from "@vercel/blob";
+
 const staticPages = [
     { loc: "https://www.8ighty8ight.xyz/", priority: "1.0" },
     { loc: "https://www.8ighty8ight.xyz/All-Products", priority: "0.9" },
@@ -20,19 +22,15 @@ export default async function handler(req, res) {
     let products = [];
 
     try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 8000);
-
-        const backendUrl = "https://eightyeight-backend.onrender.com";
-        const response = await fetch(backendUrl + "/api/product/list", {
-            signal: controller.signal,
-        });
-        clearTimeout(timeout);
-
-        const data = await response.json();
-        products = data.products || [];
+        // get() authenticates automatically via OIDC/BLOB_READ_WRITE_TOKEN
+        // once the store is connected to this project — no URL needed.
+        const result = await get("sitemap-products.json", { access: "private" });
+        if (result && result.statusCode === 200) {
+            const text = await new Response(result.stream).text();
+            products = JSON.parse(text);
+        }
     } catch (error) {
-        console.error("Sitemap: backend fetch failed or timed out, serving static pages only:", error.message);
+        console.error("Sitemap: Blob read failed, serving static pages only:", error.message);
     }
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
