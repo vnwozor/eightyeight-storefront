@@ -4,8 +4,14 @@
     margin:0px;
 }
 
+@media (max-width: 400px) {
+    .shirt-heading {
+        font-size:30px;
+        margin-left:20px;
+    }
+}
 
-@media (max-width: 580px) {
+@media  (min-width: 401px) and (max-width: 580px) {
     .shirt-heading {
         font-size:30px;
     }
