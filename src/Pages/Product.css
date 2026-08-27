@@ -84,20 +84,33 @@
         width:340px;
     }
 
+    .showcase-product img{
+        height:300px;
+        width:340px;
+        object-fit:cover;
+    }
+
 
     .showcase-img-div {
         gap:8px;
         margin-top:8px;
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr;
     }
 
     .mag {
-        width:79px;
+        width:87px;
+        padding:0px;
+        width:100px;
+        height:100px;
     }
 
 
 
     .showcase-img {
-        height:80px;
+        height:92px;
+        width:100%;
+        object-fit:cover;
     }
 }
 
