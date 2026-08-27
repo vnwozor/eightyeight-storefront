@@ -8,8 +8,15 @@
     margin-top:5%;
 }
 
+@media (max-width: 400px) {
+    .preview-div {
+        flex-direction:column;
+        gap:50px;
+        margin-top:5%;
+    }
+}
 
-@media (max-width: 580px) {
+@media (min-width: 401px) and (max-width: 580px) {
     .preview-div {
         flex-direction:column;
         gap:50px;
