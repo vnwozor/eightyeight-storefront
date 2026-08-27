@@ -47,6 +47,9 @@
 .product-name {
     margin:0px;
     color:black;
+    font-size:14px;
+    font-weight:600;
+    text-transform: uppercase;
 }
 
 .sold-stamp-div {
