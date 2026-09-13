@@ -20,7 +20,7 @@ export const Shirts = () => {
 
     useEffect(() => {
         const Produe = products.filter((item) => (item.category === 'shirt'))
-        setProdue(Produe.slice(0,4))
+        setProdue(Produe.slice(0,8))
     }, [products])
 
     const formatCurrency = (amount) => {

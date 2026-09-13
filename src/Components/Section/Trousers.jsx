@@ -17,7 +17,7 @@ export const Trousers = () => {
 
     useEffect(() => {
         const Produe = products.filter((item) => (item.category === 'trouser'))
-        setProdue(Produe.slice(0,4))
+        setProdue(Produe.slice(0,8))
     }, [products])
 
     const formatCurrency = (amount) => {
