@@ -42,16 +42,7 @@ export const AccessorySingle = () => {
                     })}
                 </div>
 
-                <div className='show-div'>
-
-                    <Link to='/Accessories' className='show-more' href="#">
-                        <div>
-                            Show More {'>'}
-                        </div>
-                        <div className='show-more-line' />
-                    </Link>
-
-                </div>
+                
 
             </div>
 

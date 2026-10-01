@@ -39,16 +39,7 @@ export const TrouserSingle = () => {
                     })}
                 </div>
 
-                <div className='show-div'>
-
-                    <Link to='/Trousers' className='show-more' href="#">
-                        <div>
-                            Show More {'>'}
-                        </div>
-                        <div className='show-more-line' />
-                    </Link>
-
-                </div>
+                
 
             </div>
 
