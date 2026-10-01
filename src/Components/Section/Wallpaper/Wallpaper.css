@@ -1,9 +1,40 @@
-/* The hero photo sits underneath the transparent navbar */
+/* The hero frame sits underneath the transparent navbar and keeps one fixed
+   shape — the photos have different proportions, so each one is cropped to fit. */
+.wallpaper-frame {
+    position:relative;
+    z-index:-1;
+    width:100%;
+    aspect-ratio:3 / 4;
+    margin-top:calc(-1 * var(--nav-h));
+    overflow:hidden;
+    background-color:var(--surface);
+}
+
 .wallpaper {
     display:block;
-    position:relative;
     width:100%;
-    height:auto;
-    margin-top:calc(-1 * var(--nav-h));
-    z-index:-1;
+    height:100%;
+    object-fit:cover;
+    object-position:center 20%;
+}
+
+/* Phones & tablets: the home screen fits exactly in the screen — no scrolling.
+   The frame grows to fill whatever height the contact block leaves over. */
+@media (max-width: 830px) {
+    .home-main {
+        display:flex;
+        flex-direction:column;
+        height:calc(100vh - var(--nav-h));
+        height:calc(100svh - var(--nav-h));
+    }
+
+    .home-main .wallpaper-frame {
+        flex:1 1 0;
+        min-height:0;
+        aspect-ratio:auto;
+    }
+
+    .home-main .homefooter-main {
+        flex:0 0 auto;
+    }
 }

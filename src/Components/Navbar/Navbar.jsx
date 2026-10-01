@@ -114,7 +114,7 @@ export const Navbar = () => {
 
 
 
-			<NavLink to='/'>
+			<NavLink to='/' className='logo-link'>
 				<img src={assets.logo} className='logo' alt="E8 logo" />
 			</NavLink>
 			

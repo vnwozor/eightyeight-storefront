@@ -13,8 +13,11 @@
 }
 
 @media (max-width: 830px) {
+    /* left padding makes room for the hamburger; the logo takes everything else */
     .navbar {
-        justify-content:center;
+        justify-content:flex-start;
+        gap:0;
+        padding-left:calc(var(--gutter) + var(--menu-btn));
     }
 }
 
@@ -195,6 +198,11 @@
 }
 
 @media (max-width: 830px) {
+    .logo-link {
+        flex:1 1 auto;
+        min-width:0;
+    }
+
     .logo {
         width:100%;
     }

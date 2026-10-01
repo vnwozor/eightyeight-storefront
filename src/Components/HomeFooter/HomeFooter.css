@@ -57,3 +57,21 @@
 .homefooter-png {
     height:16px;
 }
+
+/* compact on phones so the whole home screen fits without scrolling */
+@media (max-width: 830px) {
+    .homefooter-main {
+        gap:12px;
+        padding:20px var(--gutter);
+        padding-bottom:max(20px, env(safe-area-inset-bottom));
+    }
+
+    .homefooter-div {
+        gap:6px;
+    }
+
+    .homefooter-div p,
+    .homefooter-mail {
+        font-size:15px;
+    }
+}

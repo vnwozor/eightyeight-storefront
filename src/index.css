@@ -20,9 +20,14 @@
 
 @media (max-width: 830px) {
   :root {
-    --nav-h: 84px;
     --gutter: 24px;
     --page-top: 24px;
+    /* tap area of the hamburger button on the left of the navbar */
+    --menu-btn: 40px;
+    /* the logo fills all the navbar width left over beside the hamburger … */
+    --logo-w: calc(100vw - 2 * var(--gutter) - var(--menu-btn));
+    /* … and the navbar grows with it (logo artwork is 830 × 186) */
+    --nav-h: calc(var(--logo-w) * 186 / 830 + 24px);
   }
 }
 

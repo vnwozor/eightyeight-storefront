@@ -15,16 +15,17 @@
     overflow:hidden;
 }
 
+/* Every image is fitted into the same box, so a tall photo (joggers) and a wide
+   photo (tees) take up the same space instead of all being forced to one height. */
 .img-div img {
-    height:62%;
-    width:auto;
-    max-width:90%;
+    width:78%;
+    height:78%;
     object-fit:contain;
-    transition:height 0.15s ease-in-out;
+    transition:transform 0.2s ease-in-out;
 }
 
 .product-div:hover .img-div img {
-    height:71%;
+    transform:scale(1.08);
 }
 
 @media (max-width: 500px) {
@@ -34,10 +35,13 @@
         margin-bottom:10px;
     }
 
-    .img-div img,
+    .img-div img {
+        width:92%;
+        height:92%;
+    }
+
     .product-div:hover .img-div img {
-        height:100%;
-        max-width:100%;
+        transform:none;
     }
 }
 

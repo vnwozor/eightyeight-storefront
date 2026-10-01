@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - var(--nav-h));
+    min-height: calc(100svh - var(--nav-h)); /* svh = the visible screen on phones, ignoring the browser bar */
 }
 
 .app-shell > .footer-main {

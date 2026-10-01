@@ -13,14 +13,15 @@ export const Product = () => {
 
 
     const [ productData, setProductData ] = useState(false);
-    const [image, setImage] = useState('')
+    const [imageIndex, setImageIndex] = useState(0)
     const [size, setSize] = useState('')
+    const [touchStartX, setTouchStartX] = useState(null)
 
     const fetchProductData = () => {
         products.map((item) => {
             if(item._id === productId) {
                 setProductData(item)
-                setImage(item.images[0])
+                setImageIndex(0)
                 return null;
             }
         })
@@ -29,6 +30,34 @@ export const Product = () => {
     useEffect(() => {
         fetchProductData()
     }, [products, productId])
+
+    const imageCount = productData ? productData.images.length : 0
+
+    // wraps around: next on the last image goes back to the first, and vice versa
+    const showPrevImage = () => setImageIndex((i) => (i - 1 + imageCount) % imageCount)
+    const showNextImage = () => setImageIndex((i) => (i + 1) % imageCount)
+
+    // keyboard arrows also move the slider
+    useEffect(() => {
+        if (imageCount < 2) return
+        const onKeyDown = (e) => {
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement?.tagName)) return
+            if (e.key === 'ArrowLeft') showPrevImage()
+            if (e.key === 'ArrowRight') showNextImage()
+        }
+        window.addEventListener('keydown', onKeyDown)
+        return () => window.removeEventListener('keydown', onKeyDown)
+    }, [imageCount])
+
+    // swipe left / right on touch screens
+    const onTouchStart = (e) => setTouchStartX(e.touches[0].clientX)
+    const onTouchEnd = (e) => {
+        if (touchStartX === null || imageCount < 2) return
+        const distance = e.changedTouches[0].clientX - touchStartX
+        if (distance > 40) showPrevImage()
+        if (distance < -40) showNextImage()
+        setTouchStartX(null)
+    }
 
     const formatCurrency = (amount) => {
         return `${amount.toLocaleString()}`
@@ -56,19 +85,35 @@ export const Product = () => {
                     <div className='showcase-div'>
 
 
-                        <div className='showcase-product'>
-                            <img src={image} alt={productData.name} />
+                        <div className='showcase-product' onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+                            <img src={productData.images[imageIndex]} alt={`${productData.name} - view ${imageIndex + 1}`} />
+
+                            {imageCount > 1 && (
+                                <>
+                                    <button type='button' onClick={showPrevImage} className='slider-arrow slider-arrow-prev' aria-label='Previous image'>
+                                        <svg viewBox='0 0 24 24' aria-hidden='true'><path d='M15 6l-6 6 6 6' /></svg>
+                                    </button>
+
+                                    <button type='button' onClick={showNextImage} className='slider-arrow slider-arrow-next' aria-label='Next image'>
+                                        <svg viewBox='0 0 24 24' aria-hidden='true'><path d='M9 6l6 6-6 6' /></svg>
+                                    </button>
+
+                                    <div className='slider-counter'>
+                                        {imageIndex + 1} / {imageCount}
+                                    </div>
+                                </>
+                            )}
                         </div>
-                        
+
                         <div className='showcase-img-div'>
 
                             {productData.images.map((item,index) => {
                                 return (
-                                
-                                    <div className='mag' key={index}>
-                                        <img onClick={ () => setImage(item) }  src={item} alt={`${productData.name} - view ${index + 1}`} className='showcase-img' />
-                                    </div>
-                                        
+
+                                    <button type='button' className={`mag ${index === imageIndex ? 'active' : ''}`} key={index} onClick={() => setImageIndex(index)} aria-label={`Show image ${index + 1}`}>
+                                        <img src={item} alt='' className='showcase-img' />
+                                    </button>
+
                                 )
                             })}
                         </div>
