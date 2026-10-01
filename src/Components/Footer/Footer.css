@@ -1,26 +1,27 @@
 .footer-main {
     position:relative;
-    left:0;
-    right:0;
-    bottom:0;
-    margin-top:90px;
+    padding-top:96px; /* space above the red block, also holds the "Made by" pill */
 }
 
 
 
 .made-a {
     position:absolute;
-    right:10px;
-    top:-45px;
+    right:var(--gutter);
+    top:30px;
 }
 
 .made-btn {
-    display: flex;
-    padding:8px 16px;
-    padding-top:10px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    height:36px;
+    padding:0 16px;
     background-color:rgb(27, 27, 27);
     color:white;
-    cursor: pointer;
+    font-size:14px;
+    font-weight:500;
+    cursor:pointer;
     border:none;
     border-radius:20px;
 }
@@ -107,10 +108,10 @@
 .footer-div {
     display:flex;
     justify-content:space-evenly;
+    gap:40px;
     color:white;
-    background-color:rgb(128, 0, 0);
-    padding:60px 30px;
-    margin-top:60px;
+    background-color:var(--brand);
+    padding:56px var(--gutter);
 }
 
 .social-title {
@@ -263,7 +264,13 @@
 .footer-title-div {
     display:flex;
     flex-direction:column;
-    margin-right:30px;
+    margin-right:40px;
+}
+
+@media (max-width: 750px) {
+    .footer-title-div {
+        margin-right:0;
+    }
 }
 
 
@@ -324,5 +331,34 @@
 @media (max-width: 750px) {
     .title-div{
         cursor: pointer;
+    }
+}
+
+.logo-div a {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    min-width:32px;
+    min-height:32px;
+}
+
+@media (max-width: 580px) {
+    .footer-div {
+        gap:24px;
+        padding:40px var(--gutter) 48px;
+    }
+
+    .social-title {
+        margin-bottom:12px;
+    }
+}
+
+@media (max-width: 750px) {
+    .title-div .footer-title {
+        margin:14px 0;
+    }
+
+    .link-div .footer-link:first-child {
+        margin-top:2px;
     }
 }

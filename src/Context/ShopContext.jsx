@@ -12,8 +12,12 @@ const ShopContextProvider = ({children}) => {
 
     const [products, setProducts] = useState([])
     const [cartItem, setCartItem] = useState(() => {
-        const savedCart = localStorage.getItem('cartItem')
-        return savedCart ? JSON.parse(savedCart) : []
+        try {
+            const savedCart = JSON.parse(localStorage.getItem('cartItem'))
+            return Array.isArray(savedCart) ? savedCart : []
+        } catch {
+            return []
+        }
     })
 
     useEffect(() => {
@@ -136,8 +140,6 @@ const ShopContextProvider = ({children}) => {
             return;
         }
 
-        const { subtotal, deliveryFee, total } = getTotalCart(deliveryInfo.state);
-
         const orderedItems = cartItem.map((cartEntry) => {
             const product = products.find((p) => p._id === cartEntry.id);
             return {
@@ -165,10 +167,14 @@ const ShopContextProvider = ({children}) => {
                 phone: deliveryInfo.phone,
                 address,
                 city: deliveryInfo.city,
+                state: deliveryInfo.state,
                 note: deliveryInfo.estimatedDelivery
             })
 
             if (response.data.success) {
+                // the backend recalculates prices from the database — always charge its total
+                const { subtotal, deliveryFee, total } = response.data
+
                 const newOrder = {
                     orderId: response.data.orderId,
                     items: orderedItems,
@@ -226,7 +232,7 @@ const ShopContextProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error)
-            toast.error('Could not place order, please try again')
+            toast.error(error.response?.data?.message || 'Could not place order, please try again')
         }
     };
 

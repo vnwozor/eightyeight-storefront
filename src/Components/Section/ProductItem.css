@@ -1,55 +1,53 @@
-
-
-
-
-
-
-
-.product-div:hover .img-div img {
-    height:160px;
+.product-div {
+    display:block;
+    min-width:0;
+    color:black;
 }
-
-
 
 .img-div {
     display:flex;
     justify-content:center;
     align-items:center;
-    background-color:rgb(244, 240, 240);
-    width:200px;
-    height:225px;
+    background-color:var(--surface);
+    width:100%;
+    aspect-ratio:8 / 9;
     margin-bottom:14px;
+    overflow:hidden;
 }
 
-
-
 .img-div img {
-    height:140px;
-    transition: height 0.15s ease-in-out;
+    height:62%;
+    width:auto;
+    max-width:90%;
+    object-fit:contain;
+    transition:height 0.15s ease-in-out;
+}
+
+.product-div:hover .img-div img {
+    height:71%;
 }
 
 @media (max-width: 500px) {
     .img-div {
-        width: 100%;
-        height: 120px;
-        background-color: transparent;
+        aspect-ratio:1 / 1;
+        background-color:transparent;
+        margin-bottom:10px;
     }
 
-    .img-div img {
-        height:130px;
-    }
-
+    .img-div img,
     .product-div:hover .img-div img {
-        height:130px;
+        height:100%;
+        max-width:100%;
     }
 }
 
 .product-name {
-    margin:0px;
+    margin:0 0 4px;
     color:black;
     font-size:14px;
     font-weight:600;
-    text-transform: uppercase;
+    line-height:1.3;
+    text-transform:uppercase;
 }
 
 .sold-stamp-div {
@@ -60,19 +58,18 @@
 
 .sold-stamp {
     padding:4px 8px;
-    background-color:rgb(128, 0, 0);
+    background-color:var(--brand);
     color:white;
     text-transform:uppercase;
     border-radius:35px;
     font-size:12px;
-    margin:0px;
+    margin:0;
 }
-
 
 .product-price {
     display:flex;
     align-items:center;
-    margin:0px;
+    margin:0;
     font-size:14px;
     color:rgb(59, 59, 59);
 }
@@ -80,4 +77,5 @@
 .naira-icon {
     height:20px;
     margin-right:2px;
+    flex-shrink:0;
 }

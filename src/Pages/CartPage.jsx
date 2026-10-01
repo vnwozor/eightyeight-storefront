@@ -27,7 +27,7 @@ export const CartPage = () => {
         <>
             <div className='cart-main'>
                 
-                <div className='title-div'>
+                <div className='cart-title-div'>
                     <Title title={'CART'}/>
                 </div>
 
@@ -41,7 +41,7 @@ export const CartPage = () => {
                             <>
                                 <div className='cart-heading-info'>
                                     
-                                    <p className='product-p'>Product Name</p>
+                                    <p className='product-p'>Product</p>
                                     <p>Quantity</p>
                                     <p>Remove</p>
                                     
@@ -65,7 +65,7 @@ export const CartPage = () => {
 
                                                     
                                                     <div className='cart-image-div'>
-                                                        <img className='cart-image' src={productData.images[0]}  />
+                                                        <img className='cart-image' src={productData.images[0]} alt={productData.name} />
                                                     </div>
                                                     
 
@@ -86,19 +86,19 @@ export const CartPage = () => {
                                                     
                                                 </div>
 
-                                                <input onChange={(e) => updateQuantity(item.id,item.size,Number(e.target.value) )} className='quantity-input' type="number" min={1}  value={item.quantity}/>
-                                                <img onClick={() => removeFromCart(item.id, item.size)} className='remove-btn' src={assets.close_icon}  />
+                                                <input onChange={(e) => updateQuantity(item.id,item.size,Number(e.target.value) )} className='cart-qty-input' type="number" min={1} max={20} value={item.quantity} aria-label='Quantity'/>
+                                                <button type='button' onClick={() => removeFromCart(item.id, item.size)} className='remove-btn' aria-label='Remove item'><img src={assets.close_icon} alt='' /></button>
                                             </div>
                                         )
                                     })
                                 }
 
-                                <div>
+                                <div className='cart-summary'>
                                     <CartTotal/>
                                     <div>
                                         
                                         <button onClick={() => navigate('/Place-Order')} className='proceed-btn'>
-                                            Procced To Checkout
+                                            PROCEED TO CHECKOUT
                                         </button>
                                 
                                     </div>

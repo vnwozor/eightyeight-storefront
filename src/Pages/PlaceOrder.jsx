@@ -79,7 +79,7 @@ export const PlaceOrder = () => {
                             <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder='Last name' className='placeorder-input-small' />
                         </div>
 
-                        <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder='Email Address' className='placeorder-input' />
+                        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder='Email Address' className='placeorder-input' />
 
                         <input type="text" name="street" value={formData.street} onChange={handleChange} placeholder='Street' className='placeorder-input' />
 
@@ -103,7 +103,7 @@ export const PlaceOrder = () => {
                         <div className='placeorder-input-div'>
                             <input type="text" name="country" value={formData.country} onChange={handleChange} placeholder='Country' className='placeorder-input-small' readOnly />
 
-                            <input type="text" name="phone" value={formData.phone} onChange={handleChange} placeholder='Phone Number' className='placeorder-input-small' />
+                            <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder='Phone Number' className='placeorder-input-small' />
                         </div>
                     </div>
 

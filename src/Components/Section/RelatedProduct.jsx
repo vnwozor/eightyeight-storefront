@@ -25,7 +25,7 @@ export const RelatedProduct = ({ category, currentProductId }) => {
     }
 
     return (
-        <div className='shirt-section'>
+        <div className='shirt-section related-section'>
 
             <div>
 
